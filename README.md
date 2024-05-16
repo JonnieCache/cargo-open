@@ -7,7 +7,15 @@ Note that the intended use is to open a crate's source for reading.
 Making changes to installed crates is not reccommended, and may produce unexpected results.
 Instead, clone the crate locally and [specify the path in your Cargo.toml](https://doc.rust-lang.org/cargo/reference/specifying-dependencies.html#specifying-path-dependencies).
 
-## Example
+## Installation
+
+This is a binary crate, so it's [installed manually](https://doc.rust-lang.org/book/ch14-04-installing-binaries.html) rather than as a dependency:
+
+```sh
+cargo install cargo-open
+```
+
+## Usage
 
 ```sh
 cargo open clap
