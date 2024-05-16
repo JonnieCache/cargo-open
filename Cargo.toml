@@ -12,11 +12,7 @@ keywords = [
   "cargo-subcommand",
   "open",
   "editor",
-  "ide",
-  "cli",
   "crate",
-  "package",
-  "dependency",
 ]
 exclude = [".vscode"]
 
