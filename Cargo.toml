@@ -1,0 +1,25 @@
+[package]
+name = "cargo-open"
+version = "0.1.0"
+edition = "2021"
+authors = ["Jonathan Davies <jonnie@jcd.pub>"]
+license = "MIT"
+description = "Cargo command to open an installed crate in your editor"
+repository = "https://github.com/JonnieCache/cargo-open"
+categories = ["development-tools", "development-tools::cargo-plugins"]
+keywords = [
+  "cargo",
+  "cargo-subcommand",
+  "open",
+  "editor",
+  "ide",
+  "cli",
+  "crate",
+  "package",
+  "dependency",
+]
+exclude = [".vscode"]
+
+[dependencies]
+cargo_metadata = "0.18.1"
+clap = { version = "4.5.4", features = ["derive"] }
