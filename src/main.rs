@@ -46,7 +46,7 @@ use cargo_metadata::{Metadata, MetadataCommand, Package};
 use clap::{error::ErrorKind, CommandFactory, Error, Parser};
 use std::{
     path::PathBuf,
-    process::{Child, Command},
+    process::{Command, ExitStatus},
 };
 
 #[derive(Parser)]
@@ -126,14 +126,9 @@ fn get_editor_path() -> Result<PathBuf, Error> {
         .map(PathBuf::from)
 }
 
-fn run_editor(editor_path: PathBuf, package_path: PathBuf) -> Result<Child, Error> {
-    let mut cmd = Command::new(editor_path.clone());
-    cmd.arg(package_path);
-
-    cmd.spawn().map_err(|_| {
-        Error::raw(
-            ErrorKind::Io,
-            format!("Cannot execute editor: {}", editor_path.display()),
-        )
-    })
+fn run_editor(editor_path: PathBuf, package_path: PathBuf) -> Result<ExitStatus, Error> {
+    Command::new(editor_path.clone())
+        .arg(package_path.clone())
+        .status()
+        .map_err(|e| Error::raw(ErrorKind::Io, e))
 }
