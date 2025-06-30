@@ -27,6 +27,7 @@
             buildInputs = with pkgs; [
               rustc
               cargo
+              cargo-release
               rust-analyzer
               lldb
               clippy
