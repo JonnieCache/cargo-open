@@ -1,11 +1,12 @@
 {
-  description = "OnceRng";
+  description = "Cargo Open";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
   };
 
-  outputs = { self, nixpkgs, }:
+  outputs =
+    { self, nixpkgs }:
     let
       supportedSystems = [
         "x86_64-linux"
@@ -14,11 +15,11 @@
         "aarch64-darwin"
       ];
 
-      forEachSupportedSystem = f:
-        nixpkgs.lib.genAttrs supportedSystems (system: f system);
+      forEachSupportedSystem = f: nixpkgs.lib.genAttrs supportedSystems (system: f system);
     in
     {
-      devShells = forEachSupportedSystem (system:
+      devShells = forEachSupportedSystem (
+        system:
         let
           pkgs = import nixpkgs { inherit system; };
         in
@@ -33,6 +34,7 @@
               clippy
             ];
           };
-        });
+        }
+      );
     };
 }
