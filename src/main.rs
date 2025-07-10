@@ -63,7 +63,7 @@ struct Args {
     package_name: String,
 
     /// Use a specific manifest file
-    #[arg(long, value_name = "PATH")]
+    #[arg(short, long, value_name = "PATH")]
     manifest_path: Option<PathBuf>,
 
     /// Print the crate's directory
