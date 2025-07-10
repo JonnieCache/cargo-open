@@ -65,6 +65,10 @@ struct Args {
     /// Use a specific manifest file
     #[arg(long, value_name = "PATH")]
     manifest_path: Option<PathBuf>,
+
+    /// Print the crate's directory
+    #[arg(short, long, value_name = "PRINT_PATH")]
+    print_path: bool,
 }
 
 fn main() {
@@ -80,9 +84,13 @@ fn try_main() -> Result<(), Error> {
     let metadata = get_metadata(args.manifest_path)?;
     let package = get_package(&args.package_name, &metadata)?;
     let package_path = get_package_path(package)?;
-    let editor_path = get_editor_path()?;
 
-    run_editor(editor_path, package_path)?;
+    if args.print_path {
+        println!("{}", package_path.display());
+    } else {
+        let editor_path = get_editor_path()?;
+        run_editor(editor_path, package_path)?;
+    }
 
     Ok(())
 }
